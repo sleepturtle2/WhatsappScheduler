@@ -22,6 +22,7 @@ public class Message {
     private LocalDateTime submittedDateTime;
     private String gupshupMessageId;
 
+
     public Long getMessageId() {
         return messageId;
     }
