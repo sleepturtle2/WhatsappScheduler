@@ -1,4 +1,4 @@
-package com.WhatsappSchedulerBackend.model;
+package com.WhatsappSchedulerBackend.model.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -18,7 +18,7 @@ public class Message {
     private Long receiverPhoneNumber;
     private Long clientId;
     private LocalDateTime creationDateTime;
-    private Integer messageStatus;
+    private Long messageStatus;
     private LocalDateTime submittedDateTime;
     private String gupshupMessageId;
 

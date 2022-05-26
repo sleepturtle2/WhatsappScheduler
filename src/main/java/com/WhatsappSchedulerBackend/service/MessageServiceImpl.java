@@ -1,6 +1,6 @@
 package com.WhatsappSchedulerBackend.service;
 
-import com.WhatsappSchedulerBackend.model.Message;
+import com.WhatsappSchedulerBackend.model.entities.Message;
 import com.WhatsappSchedulerBackend.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

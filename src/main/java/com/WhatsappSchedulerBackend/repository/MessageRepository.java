@@ -1,6 +1,6 @@
 package com.WhatsappSchedulerBackend.repository;
 
-import com.WhatsappSchedulerBackend.model.Message;
+import com.WhatsappSchedulerBackend.model.entities.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
