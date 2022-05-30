@@ -7,6 +7,10 @@ import com.WhatsappSchedulerBackend.repositories.MessageDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Service
 public class RequestProcessor {
     Exception exception;
@@ -19,8 +23,8 @@ public class RequestProcessor {
     ResponseProcessor responseProcessor;
     @Autowired
     MessageDao messageDao;
-    //@Autowired
-    //VendorSendor sender;
+    @Autowired
+    VendorSender sender;
 
     int errorCode = -1;
 
@@ -42,22 +46,51 @@ public class RequestProcessor {
             message = prepareMessage(request);
             errorCode = storeMessage(message);
 
-            if(message.getStatus() == 5){
+            if(message.getMessageStatus() == 5){
                 sender.send(message);
-                return responseProcessor.responseGenerator(message.getStatus(), message);
+                return responseProcessor.responseGenerator(message.getMessageStatus(), message);
             }
         } catch (Exception e){
-            if(errorCode......)
-                return responseGenerator.responseGenerator(errorCode, message);
+            if(errorCode < 200)
+                return responseProcessor.responseGenerator(errorCode, message);
             else
                 return responseProcessor.responseGenerator(errorCode, request);
         }
 
-        return responseProcessor.responseGenerator(message.getStatus(), message);
+        return responseProcessor.responseGenerator(message.getMessageStatus(), message);
     }
 
     private Message prepareMessage(RequestDto request){
         Message message = new Message();
-        message.set
+        message.setAccountId(Integer.valueOf(request.getAccountId()));
+        message.setMessageBody(request.getMessage());
+        message.setSendTo(Integer.valueOf(request.getSendTo()));
+
+        if (request.getScheduledTime().equals("now")) {
+            LocalDateTime localDateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formatDateTime = localDateTime.format(formatter);
+            message.setScheduledDateTime(LocalDateTime.parse(formatDateTime.replace(" ", "T")));
+            message.setMessageStatus(5);
+        } else {
+            message.setScheduledDateTime(LocalDateTime.parse(request.getScheduledTime().replace(" ", "T")));
+            message.setMessageStatus(0);
+        }
+
+        return message;
+    }
+
+    private int storeMessage(Message message){
+        try{
+            int responseCode = messageDao.insert(message);
+            message.setMessageId(messageDao.retrieveMessageId(message));
+            System.out.println("responseCode = " + responseCode);
+
+            if(responseCode == 0)
+                throw exception;
+        } catch(Exception e){
+            return 400;
+        }
+        return 0;
     }
 }

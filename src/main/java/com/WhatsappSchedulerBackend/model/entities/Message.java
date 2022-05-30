@@ -5,30 +5,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Data
 @ToString
-@Entity
-@Table(name="Message")
 @NoArgsConstructor
 public class Message extends Entities {
-    @Id
-    @Column(name = "message_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long messageId;
+    private int messageId;
+    private int accountId;
     private String messageBody;
     private LocalDateTime scheduledDateTime;
-    private Long sendTo;
-    private Long messageStatus;
-    private String gupshupMessageId;
+    private int sendTo;
+    private int messageStatus;
 
 
-    public Long getMessageId() {
+    public int getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(Long messageId) {
+    public void setMessageId(int messageId) {
         this.messageId = messageId;
     }
 }

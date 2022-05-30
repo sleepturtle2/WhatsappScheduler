@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class RequestDto {
+    private String accountId;
     private String clientId;
     private String uToken;
     private String message;

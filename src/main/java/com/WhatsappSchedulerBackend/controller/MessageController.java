@@ -3,7 +3,6 @@ package com.WhatsappSchedulerBackend.controller;
 import com.WhatsappSchedulerBackend.model.domains.RequestDto;
 import com.WhatsappSchedulerBackend.model.domains.ResponseDto;
 import com.WhatsappSchedulerBackend.model.domains.StatusDto;
-import com.WhatsappSchedulerBackend.service.MessageService;
 import com.WhatsappSchedulerBackend.constants.Constants;
 import com.WhatsappSchedulerBackend.utils.RequestProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/message")
 public class MessageController {
-    private MessageService messageService;
 
     @Autowired
     private RequestProcessor requestProcessor;
