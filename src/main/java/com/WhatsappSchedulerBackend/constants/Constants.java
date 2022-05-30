@@ -1,4 +1,4 @@
-package com.WhatsappSchedulerBackend.utils;
+package com.WhatsappSchedulerBackend.constants;
 
 public class Constants {
     public static final String SUCCESS = "SUCCESS";

@@ -1,0 +1,12 @@
+error codes: 
+0 - scheduled 
+1 - dispatched 
+5 - send now 
+4000 - internal error 
+4001 - message is empty
+4002 - invalid time input 
+4003 - no scheduled time given 
+4004 - invalid phone number
+4005 - empty client id 
+4006 - password/unique_token format is incorrect 
+4007 - invalid credentials 

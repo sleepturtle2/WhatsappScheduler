@@ -1,10 +1,14 @@
 package com.WhatsappSchedulerBackend.controller;
 
+import com.WhatsappSchedulerBackend.model.domains.RequestDto;
+import com.WhatsappSchedulerBackend.model.domains.ResponseDto;
 import com.WhatsappSchedulerBackend.model.domains.StatusDto;
-import com.WhatsappSchedulerBackend.model.entities.Message;
 import com.WhatsappSchedulerBackend.service.MessageService;
-import com.WhatsappSchedulerBackend.utils.Constants;
+import com.WhatsappSchedulerBackend.constants.Constants;
+import com.WhatsappSchedulerBackend.utils.RequestProcessor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,11 +17,8 @@ import org.springframework.web.bind.annotation.*;
 public class MessageController {
     private MessageService messageService;
 
-
-    public MessageController(MessageService messageService) {
-        super();
-        this.messageService = messageService;
-    }
+    @Autowired
+    private RequestProcessor requestProcessor;
 
     //build REST APIs
     @GetMapping("/health/check")
@@ -25,8 +26,9 @@ public class MessageController {
         return new ResponseEntity<>(StatusDto.builder().status(Constants.SUCCESS).value(Constants.HTTP_SUCCESS).build(), HttpStatus.OK);
     }
 
-    @PostMapping("/send")
-    public ResponseEntity<Message>sendMessage(@RequestBody Message message){
-        return new ResponseEntity<Message>(messageService.sendMessage(message), HttpStatus.CREATED);
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/send", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseDto sendMessage(RequestDto request){
+        return requestProcessor.requestProcessor(request);
     }
 }

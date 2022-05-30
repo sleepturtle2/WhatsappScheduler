@@ -2,12 +2,16 @@ package com.WhatsappSchedulerBackend.model.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Data
+@ToString
 @Entity
 @Table(name="Message")
+@NoArgsConstructor
 public class Message {
     @Id
     @Column(name = "message_id", nullable = false)
@@ -15,11 +19,8 @@ public class Message {
     private Long messageId;
     private String messageBody;
     private LocalDateTime scheduledDateTime;
-    private Long receiverPhoneNumber;
-    private Long clientId;
-    private LocalDateTime creationDateTime;
+    private Long sendTo;
     private Long messageStatus;
-    private LocalDateTime submittedDateTime;
     private String gupshupMessageId;
 
 
