@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @ToString
@@ -15,4 +17,5 @@ public class ResponseDto {
     public String status;
 
 
+   public ResponseDto(String messageId, String sendTo, String messageBody, String scheduledTime, String status){};
 }

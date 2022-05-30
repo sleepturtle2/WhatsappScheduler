@@ -18,8 +18,9 @@ public class ResponseProcessor {
         String error = ErrorCodes.codeToString(errorCode);
         ResponseDto response = null;
 
-        if(errorCode < 10){
-            response = new ResponseDto(Long.toString(message.getMessageId()), message.get)
-        }
+        if(errorCode < 10)
+            response = new ResponseDto(Long.toString(message.getMessageId()), Long.toString(message.getSendTo()), message.getMessageBody(), message.getScheduledDateTime().toString(), Integer.toString(errorCode));
+
+        return response;
     }
 }

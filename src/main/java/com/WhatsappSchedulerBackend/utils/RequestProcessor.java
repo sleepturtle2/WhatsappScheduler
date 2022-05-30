@@ -3,6 +3,7 @@ package com.WhatsappSchedulerBackend.utils;
 import com.WhatsappSchedulerBackend.model.domains.RequestDto;
 import com.WhatsappSchedulerBackend.model.domains.ResponseDto;
 import com.WhatsappSchedulerBackend.model.entities.Message;
+import com.WhatsappSchedulerBackend.repositories.MessageDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,8 @@ public class RequestProcessor {
     ResponseProcessor responseProcessor;
     @Autowired
     MessageDao messageDao;
-    @Autowired
-    VendorSendor sender;
+    //@Autowired
+    //VendorSendor sender;
 
     int errorCode = -1;
 
@@ -53,5 +54,10 @@ public class RequestProcessor {
         }
 
         return responseProcessor.responseGenerator(message.getStatus(), message);
+    }
+
+    private Message prepareMessage(RequestDto request){
+        Message message = new Message();
+        message.set
     }
 }
