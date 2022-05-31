@@ -14,8 +14,8 @@ public class MessageMapper implements RowMapper<Message> {
         message.setMessageId(rs.getInt(1));
         message.setAccountId(rs.getInt(2));
         message.setMessageBody(rs.getString(3));
-        message.setScheduledDateTime(rs.getTimestamp(4).toLocalDateTime());
-        message.setSendTo(Integer.valueOf(rs.getString(5)));
+        message.setScheduledDateTime(rs.getTimestamp(4));
+        message.setSendTo(rs.getString(5));
         message.setMessageStatus(rs.getInt(6));
         return message;
     }

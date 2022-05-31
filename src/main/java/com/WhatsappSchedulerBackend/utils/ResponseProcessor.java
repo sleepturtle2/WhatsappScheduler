@@ -17,11 +17,12 @@ public class ResponseProcessor {
     }
 
     public ResponseDto responseGenerator(int errorCode, Message message){
+
         String error = ErrorCodes.codeToString(errorCode);
         ResponseDto response = null;
 
         if(errorCode < 10)
-            response = new ResponseDto(Long.toString(message.getMessageId()), Long.toString(message.getSendTo()), message.getMessageBody(), message.getScheduledDateTime().toString(), Integer.toString(errorCode));
+            response = new ResponseDto(Integer.toString(message.getMessageId()), message.getSendTo(), message.getMessageBody(), message.getScheduledDateTime().toString(), Integer.toString(errorCode));
 
         return response;
     }

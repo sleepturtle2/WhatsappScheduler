@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -15,8 +16,8 @@ public class Message extends Entities {
     private int messageId;
     private int accountId;
     private String messageBody;
-    private LocalDateTime scheduledDateTime;
-    private int sendTo;
+    private Timestamp scheduledDateTime;
+    private String sendTo;
     private int messageStatus;
 
 

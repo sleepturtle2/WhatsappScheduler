@@ -29,7 +29,7 @@ public class AccountDetailsDao implements DBInterface{
     }
 
     public String retrieve(int accountId){
-        String query = "select * from Gupshup_Account_Details where Account_ID = ?";
+        String query = "select * from GupshupAccountDetails where Account_ID = ?";
         RowMapper<GupshupAccountDetails> rowMapper = new AccountDetailsMapper();
         GupshupAccountDetails credential = this.template.queryForObject(query, rowMapper, accountId);
         System.out.println(credential.getGupshupApiKey());

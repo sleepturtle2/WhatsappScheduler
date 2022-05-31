@@ -21,7 +21,6 @@ public class MessageDao implements DBInterface{
 
     @Override
     public int insert(Entities entity) {
-        // TODO Auto-generated method stub
         String query = "insert into Message ( account_id, message_body, scheduled_date_time, send_To, message_status) values (?,?,?,?,?)";
         int res = template.update(query, ((Message) entity).getAccountId(), ((Message) entity).getMessageBody(), ((Message) entity).getScheduledDateTime(), ((Message) entity).getSendTo(), ((Message) entity).getMessageStatus());
         return res;

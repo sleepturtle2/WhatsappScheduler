@@ -20,9 +20,10 @@ public class Authenticator {
             }
             else
                 return 412;
-
+//            System.out.println("HERE");
             if(!request.getUToken().equals("PASSWORD"))
                 throw exception;
+//            System.out.println("Here again");
         } catch(Exception e){
                 return 511;
         }

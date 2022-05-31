@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -45,12 +46,13 @@ public class RequestProcessor {
 
             message = prepareMessage(request);
             errorCode = storeMessage(message);
-
+            System.out.println(message);
             if(message.getMessageStatus() == 5){
                 sender.send(message);
                 return responseProcessor.responseGenerator(message.getMessageStatus(), message);
             }
         } catch (Exception e){
+            e.printStackTrace();
             if(errorCode < 200)
                 return responseProcessor.responseGenerator(errorCode, message);
             else
@@ -64,16 +66,16 @@ public class RequestProcessor {
         Message message = new Message();
         message.setAccountId(Integer.valueOf(request.getAccountId()));
         message.setMessageBody(request.getMessage());
-        message.setSendTo(Integer.valueOf(request.getSendTo()));
+        message.setSendTo(request.getSendTo());
 
         if (request.getScheduledTime().equals("now")) {
             LocalDateTime localDateTime = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String formatDateTime = localDateTime.format(formatter);
-            message.setScheduledDateTime(LocalDateTime.parse(formatDateTime.replace(" ", "T")));
+            message.setScheduledDateTime(Timestamp.valueOf(LocalDateTime.parse(formatDateTime.replace(" ", "T"))));
             message.setMessageStatus(5);
         } else {
-            message.setScheduledDateTime(LocalDateTime.parse(request.getScheduledTime().replace(" ", "T")));
+            message.setScheduledDateTime(Timestamp.valueOf(LocalDateTime.parse(request.getScheduledTime().replace(" ", "T"))));
             message.setMessageStatus(0);
         }
 
