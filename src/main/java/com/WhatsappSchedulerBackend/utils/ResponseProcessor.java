@@ -5,7 +5,9 @@ import com.WhatsappSchedulerBackend.model.domains.MsgErrorResponseDto;
 import com.WhatsappSchedulerBackend.model.domains.RequestDto;
 import com.WhatsappSchedulerBackend.model.domains.ResponseDto;
 import com.WhatsappSchedulerBackend.model.entities.Message;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ResponseProcessor {
     public ResponseDto responseGenerator(int errorCode, RequestDto request){
         String error = ErrorCodes.codeToString(errorCode);
