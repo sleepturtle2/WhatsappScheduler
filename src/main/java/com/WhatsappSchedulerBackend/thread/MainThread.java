@@ -25,7 +25,6 @@ public class MainThread implements Runnable{
                 Thread.sleep(30000);
                 sender.sendBatch(messageDAO.retrieveScheduledMessages());
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

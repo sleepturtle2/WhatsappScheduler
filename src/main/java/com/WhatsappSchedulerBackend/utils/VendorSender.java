@@ -48,9 +48,9 @@ public class VendorSender {
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url)).header("Accept", "application/json").header("apikey", apikey).header("Content-Type", "application/x-www-form-urlencoded").method(
-                        "POST", HttpRequest.BodyPublishers.ofString("message="+mString+"&src.name=DRSTRA&channel=whatsapp&source=917834811114&destination="+message.getSendTo())).build();
+                        "POST", HttpRequest.BodyPublishers.ofString("message="+mString+"&src.name=WhatsappScheduleText&channel=whatsapp&source=917834811114&destination="+message.getSendTo())).build();
 
-        System.out.println("Test = " + "message="+mString+"&src.name=DRSTRA&channel=whatsapp&source=917834811114&destination="+message.getSendTo());
+        System.out.println("Test = " + "message="+mString+"&src.name=WhatsappScheduleText&channel=whatsapp&source=917834811114&destination="+message.getSendTo());
         try {
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             System.out.println(response.body());

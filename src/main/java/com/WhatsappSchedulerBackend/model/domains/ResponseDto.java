@@ -16,6 +16,11 @@ public class ResponseDto {
     public String scheduledTime;
     public String status;
 
-
-   public ResponseDto(String messageId, String sendTo, String messageBody, String scheduledTime, String status){};
+    public ResponseDto(String messageId, String sendTo, String messageBody, String scheduledTime, String status) {
+        this.messageId = messageId;
+        this.sendTo = sendTo;
+        this.messageBody = messageBody;
+        this.scheduledTime = scheduledTime;
+        this.status = status;
+    }
 }
