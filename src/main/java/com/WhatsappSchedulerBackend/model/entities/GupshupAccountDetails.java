@@ -5,7 +5,7 @@ import lombok.*;
 @Data
 @ToString
 
-public class GupshupAccountDetails extends Entities{
+public class GupshupAccountDetails {
     private int accountId;
     private String gupshupApiKey;
 }

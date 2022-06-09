@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Data
 @ToString
 @NoArgsConstructor
-public class Message extends Entities {
+public class Message extends Entities{
     private int messageId;
     private int accountId;
     private String messageBody;

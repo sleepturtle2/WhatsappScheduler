@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ResponseProcessor {
+    //generates error response
     public ResponseDto responseGenerator(int errorCode, RequestDto request){
         String error = ErrorCodes.codeToString(errorCode);
         MsgErrorResponseDto response = new MsgErrorResponseDto("No message ID", request.getSendTo(), request.getMessage(), request.getScheduledTime(), "ERROR", error);
@@ -16,6 +17,7 @@ public class ResponseProcessor {
         return response;
     }
 
+    //generates success response
     public ResponseDto responseGenerator(int errorCode, Message message){
 
         String error = ErrorCodes.codeToString(errorCode);

@@ -19,11 +19,13 @@ public class MessageController {
     private RequestProcessor requestProcessor;
 
     //build REST APIs
+    //to run a basic check of the endpoints
     @GetMapping("/health/check")
     public ResponseEntity<StatusDto>healthCheckEndPoint(){
         return new ResponseEntity<>(StatusDto.builder().status(Constants.SUCCESS).value(Constants.HTTP_SUCCESS).build(), HttpStatus.OK);
     }
 
+    //main send endpoint
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/send", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseDto sendMessage(RequestDto request){

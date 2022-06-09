@@ -29,6 +29,7 @@ public class RequestProcessor {
 
     int errorCode = -1;
 
+    //checks all parameters of request and generates response
     public ResponseDto requestProcessor(RequestDto request){
         Message message = null;
 
@@ -62,6 +63,7 @@ public class RequestProcessor {
         return responseProcessor.responseGenerator(message.getMessageStatus(), message);
     }
 
+    //prepares the request to be stored in the database
     private Message prepareMessage(RequestDto request){
         Message message = new Message();
         message.setAccountId(Integer.valueOf(request.getAccountId()));
@@ -82,6 +84,7 @@ public class RequestProcessor {
         return message;
     }
 
+    //use row mappers to store message in db
     private int storeMessage(Message message){
         try{
             int responseCode = messageDao.insert(message);

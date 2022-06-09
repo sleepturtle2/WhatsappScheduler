@@ -20,7 +20,8 @@ public class WhatsappSchedulerBackendApplication
 
 	ConfigurableApplicationContext context;
 
-	static ExecutorService threadeExecutor = Executors.newCachedThreadPool();
+	//initiates a pool of a single thread, with keepAlive of 0
+	static ExecutorService threadExecutor = Executors.newCachedThreadPool();
 	public static void main( String[] args )
 	{
 		WhatsappSchedulerBackendApplication app = new WhatsappSchedulerBackendApplication();
@@ -29,6 +30,6 @@ public class WhatsappSchedulerBackendApplication
 
 		// thread.run();
 		app.thread = (MainThread) app.context.getBean("thread");
-		threadeExecutor.execute(app.thread);
+		threadExecutor.execute(app.thread);
 	}
 }
